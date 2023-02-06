@@ -2,6 +2,7 @@
 Repository for material and presentations
 
 ## Course Feb 8, 2023: Tidyverse
+Downloads:
 - [Slides](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/Kursus-08022023.pdf)
 
 
