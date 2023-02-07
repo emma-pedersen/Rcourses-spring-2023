@@ -111,9 +111,15 @@ De funktioner, I primært kommer til at bruge, hvis I skal lave datamanipulation
 
 -   `select()` udvælger variable ud fra deres navn
 -   `filter()`: udvælger cases baseret på deres værdier
--   `mutate()`: tilføjer nye variable, sum er funktioner af eksisterende variable
+-   `mutate()`: tilføjer nye variable, sum er funktioner af eksisterende variable:
 -   `summarise()`: reducerer flere værdier til én opsummering
 -   `arrange()`: sorterer rækkerne fra mindste til største værdi
+
+Ekstra: 
+
+- `pivot_wider()`: Forklaring senere 
+- `pivot_longer()`: Forklaring senere
+
 
 ## Datamanipulation med dplyr
 
@@ -215,6 +221,17 @@ starwars %>%
   select(mass) %>%
   arrange(mass)
 ```
+
+
+## Datamanipulation med dplyr
+
+### pivot_wider
+
+
+## Datamanipulation med dplyr
+
+### pivot_longer
+
 
 ## Visualisering af data med ggplot2
 
