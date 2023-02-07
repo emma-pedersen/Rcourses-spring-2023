@@ -10,7 +10,7 @@ date: "2023-02-07"
 
 I får alle tildelt det samme dataset (pokemon) med det formål at benytte funktioner fra tidyverse/ggplot2 til at komme med de mest interressante konklussioner fundet ud fra dette dataset. 
 
-Der er selvfølgelig en præmie til vinderen!
+Der er selvfølgelig en præmie til vinderen! I må være i grupper på op til 5 personer (skriv navne i dokumentet)!
 
 Jeres besvarrelse må **maximalt** indholde følgende: 
 
@@ -18,7 +18,7 @@ Jeres besvarrelse må **maximalt** indholde følgende:
 - 10 linjers konklussion 
 - Det må i alt ikke fylde mere end 3 a4 sider! 
 
-**Send jeres resultater senest 13:50 til sft@business.aau.dk** 
+**Send jeres resultater senest 13:50 til sft@business.aau.dk ** 
 
 
 Vi viser vinderen som afslutning lidt over 14:00! og uddeler præmie!
