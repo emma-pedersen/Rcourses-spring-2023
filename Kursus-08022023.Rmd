@@ -28,7 +28,7 @@ library(tidyverse)
 +---------------+----------------------------------------------+
 |               |                                              |
 +---------------+----------------------------------------------+
-| 12.30         | Øvelser                                      |
+| 12.30         | Øvelse/Konkurrence                           |
 +---------------+----------------------------------------------+
 |               |                                              |
 +---------------+----------------------------------------------+
@@ -117,8 +117,8 @@ De funktioner, I primært kommer til at bruge, hvis I skal lave datamanipulation
 
 Ekstra: 
 
-- `pivot_wider()`: Forklaring senere 
-- `pivot_longer()`: Forklaring senere
+- `pivot_wider()`: Trnasformere dit data til **Wider** format
+- `pivot_longer()`: Trnasformere dit data til **Longer** format
 
 
 ## Datamanipulation med dplyr
@@ -225,13 +225,57 @@ starwars %>%
 
 ## Datamanipulation med dplyr
 
+### **Long** dataformat
+
+Et data format oftests brugt af fx. OECD, inkluderer flere variable i en kolonne, og kaldes **longer**.
+
+```{r, eval=FALSE}
+fish_encounters %>% head(5)
+```
+
+
+## Datamanipulation med dplyr
+
+### **Wider** dataformat
+
+Det data format i nok har set mest ind til videre er **Wider** formatet, en variabel per kolonne.
+
+```{r}
+relig_income %>%
+  head(5)
+```
+
+
+
+## Datamanipulation med dplyr
+
 ### pivot_wider
 
+Hvordan går vi fra longer format til wider?
+
+Eksempel på pivot_wider(): 
+
+```{r}
+fish_encounters %>%
+  pivot_wider(names_from = station, 
+              values_from = seen) %>%
+  head(5)
+```
 
 ## Datamanipulation med dplyr
 
 ### pivot_longer
 
+Hvordan går vi fra **wider** format til **longer**?
+
+Eksempel på pivot_longer()
+
+```{r}
+relig_income %>%
+  pivot_longer(!religion, names_to = "income", 
+               values_to = "count") %>%
+  head(5)
+```
 
 ## Visualisering af data med ggplot2
 
