@@ -1,0 +1,107 @@
+---
+title: "Follow Along"
+output: html_document
+date: "2023-02-07"
+---
+Jeg har hentet data på arbejdsløshedsraten direkte inde fra OECD. Her kræves der først en del arbejde med dataet før vi kan bruge det til noget.... 
+
+```{r}
+library(readxl)
+OECD_data <- read_excel("OECD data.xlsx")
+glimpse(OECD_data)
+
+```
+
+Ændre navne fra store bogstaver til små:
+
+
+```{r}
+names(OECD_data) <- tolower(names(OECD_data))
+```
+
+```{r}
+OECD_data %>%
+  count(location)
+```
+
+### Step 1
+
+Brug nu select funktionen til at vælge de tre kolonner: "location","value" og "time".
+
+```{r, eval=FALSE}
+OECD_data %>% 
+  select(location, value, time)
+```
+
+
+Vi vil nu gerne lave en kolonne med henholdsvis Danmarks, Tysklands, Italians, USAs og OECDs arbejdsløshedsrate. 
+
+Dette kan gøres på flere måder:
+
+
+### Step 2a Join data
+
+1. Brug filter() funktionen til at vælge observationer kun for Danmark, gem dette i et dataset $\rightarrow$ Gør nu det samme for de andre lande $\rightarrow$ brug left_join() funktionen til at sammensætte de 5 individuelle dataset. 
+
+```{r}
+DK_dat=OECD_data %>% 
+  select(location, value, time) %>%
+  filter(location == "DNK") %>%
+  rename(dk_value = value)
+
+DEU_dat=OECD_data %>% 
+  select(location, value, time) %>%
+  filter(location == "DEU") %>%
+  rename(deu_value = value)
+
+USA_dat=OECD_data %>% 
+  select(location, value, time) %>%
+  filter(location == "USA")%>%
+  rename(usa_value = value)
+
+option_a_data= DK_dat %>%
+  left_join(DEU_dat, by = c("time")) %>%
+  left_join(USA_dat, by = c("time")) %>%
+  select(time,dk_value, deu_value, usa_value)
+  
+```
+
+Denne metode tager en del tid og kode, nogle gange er det nødvendigt, men til lige præcis den her opgave kan vi bruge pivot_wider() funktionen som gør det meget nemmere:
+
+#### Step 2b. Brug pivot_wider() funktionen 
+
+
+```{r}
+option_b_data=OECD_data %>% 
+  select(location, value, time) %>%
+  pivot_wider( names_from = location, values_from= value)
+```
+
+```{r}
+option_b_data
+```
+
+
+## Step 3
+
+Jeg kunne nu lave hver kolonne til en tidsserie og derved droppe time variablen som ses nedenfor: 
+
+
+```{r}
+data_ts= option_2_data %>% 
+  select(-time) %>%
+  ts(start = c(2005), frequency = 1) 
+```
+
+
+**MEN** så vil jeg ikke kunne bruge ggplot2, da dette ikke er lavet for tidsserier. Derfor beholder vi formatet "option_2_data" hvor jeg har en "time" variabel med. Vi kan nu lave forskellige plots:
+
+```{r}
+ggplot(option_2_data, aes(x= time ,y = DNK)) + # angiver det datasæt, vi ønsker at plotte fra
+# samt hvad der skal være på x og y akserne
+geom_line() + # vi ønsker at lave et linjeplot
+labs(title = "Arbejdsløshedsraten i Danmark fra 2005 til 2020",
+caption = "Kilde: OECD.dk")
+```
+
+
