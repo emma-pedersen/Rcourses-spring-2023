@@ -32,6 +32,14 @@ library(tidyverse)
 +---------------+----------------------------------------------+
 |               |                                              |
 +---------------+----------------------------------------------+
+| 14.00         | Deadline for konkurrence bidrag              |
++---------------+----------------------------------------------+
+|               |                                              |
++---------------+----------------------------------------------+
+| 14.10         | Annoncering af vindergruppe                  |
++---------------+----------------------------------------------+
+|               |                                              |
++---------------+----------------------------------------------+
 | 14.15         | Tak for i dag!                               |
 +---------------+----------------------------------------------+
 
@@ -111,15 +119,14 @@ De funktioner, I primært kommer til at bruge, hvis I skal lave datamanipulation
 
 -   `select()` udvælger variable ud fra deres navn
 -   `filter()`: udvælger cases baseret på deres værdier
--   `mutate()`: tilføjer nye variable, sum er funktioner af eksisterende variable:
+-   `mutate()`: tilføjer nye variable, sum er funktioner af eksisterende variable
 -   `summarise()`: reducerer flere værdier til én opsummering
 -   `arrange()`: sorterer rækkerne fra mindste til største værdi
 
-Ekstra: 
+Ekstra:
 
-- `pivot_wider()`: Trnasformere dit data til **Wider** format
-- `pivot_longer()`: Trnasformere dit data til **Longer** format
-
+-   `pivot_wider()`: Transformerer dit data til **Wider** format
+-   `pivot_longer()`: Transformerer dit data til **Longer** format
 
 ## Datamanipulation med dplyr
 
@@ -139,7 +146,7 @@ glimpse(starwars)
 
 ### Select()
 
-select() lader dig subset en dataframe by column (variable), hvilket betyder at output kun indeholder bestemte kolonner i den valgte rækkefølge.
+select() lader dig udvælge en del din dataframe efter kolonne (variabel), hvilket betyder at output kun indeholder bestemte kolonner i den valgte rækkefølge.
 
 ```{r}
 ### Her vælger jeg name og mass
@@ -155,14 +162,14 @@ starwars %>%
 
 ### Filter()
 
-filter() lets you subset a dataframe by rows (observations), hvilket betyder at output filtreres til kun at indeholde rækker, som opfylder en bestemt betingelse
+filter() lader dig udvælge en del af din dataframe efter rækker (observationer), hvilket betyder at output filtreres til kun at indeholde rækker, som opfylder en bestemt betingelse.
 
 ```{r, eval=FALSE}
 starwars %>%
   filter(skin_color == "gold")
 ```
 
-**Vigtigt** Brug "==", "\<=", "\>=", "\>" eller "\<" for at definere betingelsen.
+**Vigtigt**: Brug `==`, `\<=`, `\>=`, `\>` eller `\<` for at definere betingelsen.
 
 ## Datamanipulation med dplyr
 
@@ -170,7 +177,7 @@ starwars %>%
 
 mutate() lader dig manipulere med eksisterende variable eller lave nye.
 
-Vi kan lave en ny variable:
+Vi kan lave en ny variabel:
 
 ```{r}
 starwars %>%
@@ -183,7 +190,7 @@ starwars %>%
 
 ### Mutate
 
-Eller ændre en nuværende variabel
+Eller ændre en nuværende variabel:
 
 ```{r}
 starwars %>%
@@ -222,30 +229,26 @@ starwars %>%
   arrange(mass)
 ```
 
-
 ## Datamanipulation med dplyr
 
 ### **Long** dataformat
 
-Et data format oftests brugt af fx. OECD, inkluderer flere variable i en kolonne, og kaldes **longer**.
+Et data format oftest brugt af fx. OECD, inkluderer flere variable i en kolonne, og kaldes **longer**.
 
 ```{r, eval=FALSE}
 fish_encounters %>% head(5)
 ```
 
-
 ## Datamanipulation med dplyr
 
 ### **Wider** dataformat
 
-Det data format i nok har set mest ind til videre er **Wider** formatet, en variabel per kolonne.
+Det data format I nok har set mest indtil videre er **wider** formatet, en variabel per kolonne.
 
 ```{r}
 relig_income %>%
   head(5)
 ```
-
-
 
 ## Datamanipulation med dplyr
 
@@ -253,7 +256,7 @@ relig_income %>%
 
 Hvordan går vi fra longer format til wider?
 
-Eksempel på pivot_wider(): 
+Eksempel på pivot_wider():
 
 ```{r}
 fish_encounters %>%
@@ -279,9 +282,9 @@ relig_income %>%
 
 ## Visualisering af data med ggplot2
 
--   Aesthetics: visual properties of geoms, such as x and y position, line color, point shapes, etc.
--   Geoms: geometric objects that are drawn to represent the data, such as bars, lines, and points.
--   Scales: bestemmer mapping af værdierne i data space til værdierne i det aesthetic space.
+-   Aesthetics: de visuelle egenskaber for geom, som positioner for x og y, linjefarve, punktformer, m.v.
+-   Geoms: geometriske objekter, som repræsenterer date, som barer, linjer og punkter
+-   Scales: bestemmer afbilding fra data til aestjetics
 -   Labels og Legends: bestemmer bl.a. titel på plot, aksemærkater m.v.
 
 ## Visualisering af data med ggplot2
@@ -328,12 +331,15 @@ txhousing %>%
 
 ### Scales
 
-Scales map dataværdier til de visuelle værdier af en aesthetic
+Scales afbilder dataværdier til de visuelle værdier af en aesthetic: størrelse, farve, form, akser m.v.
 
--   `scale_*_continuous`: Set scales for continuous data
-    -   n.breaks: number of breaks visualized.
-    -   breaks: points for certain breaks.
-    -   limits: modify start and end value.
+R sætter selv skaleringen ud fra data - men det kan vi ændre.
+
+-   `scale_*_continuous`: Bestem skalering af kontinuert data
+    -   n.breaks: antal "breaks", som visualiseres
+    -   breaks: Tving hvilke bestemte lokationer, aksemarkeringer skal være ved
+    -   limits: modificér start- and slutværdi
+    -   labels: angiver hvordan aksemarkeringerne skrives - kan fx. være nyttigt til at angive at data er valuta
 
 \vfill
 
@@ -356,7 +362,20 @@ txhousing %>%
   ggplot(aes(x = date, y = median, color = city)) +
   geom_point() +
   scale_x_continuous(breaks = c(2000, 2005, 2012, 2015), 
-                     limits = c(2000, 2016))
+                     limits = c(2000, 2016)) +
+  scale_y_continuous(labels = scales::dollar)
+```
+
+## Visualisering af data med ggplot2
+
+```{r echo=FALSE, eval=TRUE}
+txhousing %>%
+  filter(city %in% c("Dallas", "Houston")) %>% 
+  ggplot(aes(x = date, y = median, color = city)) +
+  geom_point() +
+  scale_x_continuous(breaks = c(2000, 2005, 2012, 2015), 
+                     limits = c(2000, 2016)) +
+  scale_y_continuous(labels = scales::dollar)
 ```
 
 ## Visualisering af data med ggplot2
@@ -400,25 +419,24 @@ txhousing %>%
   filter(city %in% c("Dallas", "Houston")) %>% 
   ggplot(aes(x = date, y = median, color = city)) +
   geom_point() +
-  theme(legend.position = "bottom")
+  theme(legend.position = c(.9, .8))
 ```
 
 ## Visualisering af data med ggplot2
-
-### Sæt det hele sammen
 
 ```{r echo=FALSE, eval=TRUE, warning=FALSE}
 txhousing %>%
   filter(city %in% c("Dallas", "Houston")) %>% 
   ggplot(aes(x = date, y = median, color = city)) +
   geom_point() +
-   scale_x_continuous(n.breaks = 4, 
+  scale_x_continuous(n.breaks = 4, 
                      limits = c(2005, 2010)) +
-  labs(title = "Title",
-       subtitle = "Subtitle",
-       x = "New x label",
-       y = "New y label",
-       caption = "Source: the source",
-       color = "Color") +
-  theme(legend.position = "bottom")
+  scale_y_continuous(labels = scales::dollar) +
+  labs(title = "Texas Housing Prices",
+       subtitle = "2005-2010",
+       x = "Year",
+       y = "Median sale price",
+       caption = "Source: R package ggplot2",
+       color = "City") +
+  theme(legend.position = c(.9, .9))
 ```
