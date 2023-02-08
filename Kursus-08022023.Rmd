@@ -17,31 +17,31 @@ library(tidyverse)
 
 ## Plan for dagen
 
-+:--------------+----------------------------------------------+
-| 10.15         | Oplæg om grundlæggende R og Tidyverse-pakken |
-|               |                                              |
-|               | Follow-along med eksempel                    |
-+---------------+----------------------------------------------+
-|               |                                              |
-+---------------+----------------------------------------------+
-| 12.00         | Pause med sandwiches                         |
-+---------------+----------------------------------------------+
-|               |                                              |
-+---------------+----------------------------------------------+
-| 12.30         | Øvelse/Konkurrence                           |
-+---------------+----------------------------------------------+
-|               |                                              |
-+---------------+----------------------------------------------+
-| 14.00         | Deadline for konkurrence bidrag              |
-+---------------+----------------------------------------------+
-|               |                                              |
-+---------------+----------------------------------------------+
-| 14.10         | Annoncering af vindergruppe                  |
-+---------------+----------------------------------------------+
-|               |                                              |
-+---------------+----------------------------------------------+
-| 14.15         | Tak for i dag!                               |
-+---------------+----------------------------------------------+
++:------+----------------------------------------------+
+| 10.15 | Oplæg om grundlæggende R og Tidyverse-pakken |
+|       |                                              |
+|       | Follow-along med eksempel                    |
++-------+----------------------------------------------+
+|       |                                              |
++-------+----------------------------------------------+
+| 12.00 | Pause med sandwiches                         |
++-------+----------------------------------------------+
+|       |                                              |
++-------+----------------------------------------------+
+| 12.30 | Øvelse/Konkurrence                           |
++-------+----------------------------------------------+
+|       |                                              |
++-------+----------------------------------------------+
+| 14.00 | Deadline for konkurrence bidrag              |
++-------+----------------------------------------------+
+|       |                                              |
++-------+----------------------------------------------+
+| 14.10 | Annoncering af vindergruppe                  |
++-------+----------------------------------------------+
+|       |                                              |
++-------+----------------------------------------------+
+| 14.15 | Tak for i dag!                               |
++-------+----------------------------------------------+
 
 ## R for dummies: sådan starter du
 
@@ -83,16 +83,17 @@ Tidyverse er en samling af flere underliggende pakker
 library(tidyverse)
 ```
 
-Hvilken kode er nemmest at læse?
+Hvilken kode er nemmest at læse? \tiny
 
 ```{r}
-x <- mutate(filter(select(cars,dist), 
-                   dist > 4 & dist < 20), 
-       sum_dist = cumsum(dist))
+x <- mutate(filter(select(cars,dist),dist > 4 & dist < 20), sum_dist = cumsum(dist))
 ```
 
+\normalsize
+
 ```{r}
-y <- cars %>% select(dist) %>% 
+y <- cars %>% 
+  select(dist) %>% 
   filter(dist > 4 & dist < 20) %>% 
   mutate(sum_dist = cumsum(dist))
 ```
@@ -166,7 +167,7 @@ filter() lader dig udvælge en del af din dataframe efter rækker (observationer
 
 ```{r, eval=FALSE}
 starwars %>%
-  filter(skin_color == "gold")
+  filter(skin_color == "light")
 ```
 
 **Vigtigt**: Brug `==`, `\<=`, `\>=`, `\>` eller `\<` for at definere betingelsen.
@@ -343,7 +344,7 @@ R sætter selv skaleringen ud fra data - men det kan vi ændre.
 
 \vfill
 
-\footnotesize * erstattes med x eller y
+\footnotesize \* erstattes med x eller y
 
 ```{=html}
 <!----
