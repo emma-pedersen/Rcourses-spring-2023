@@ -4,6 +4,7 @@ Repository for material and presentations
 ## Course Feb 8, 2023: Tidyverse
 Downloads:
 - [Slides](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/Kursus-08022023.pdf)
+- [Data til Follow Along](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/OECD%20data.xlsx)
 - [Konkurrence](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/R-konkurrence.pdf)
 
 
