@@ -1,0 +1,83 @@
+---
+title: "Projektskrivning med R Markdown"
+author: "Emma Pedersen"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    fig_caption: true
+    number_sections: true
+    toc: true
+    toc_depth: 3
+bibliography: refs.bib
+csl: apa.csl
+urlcolor: black
+linkcolor: black
+fontsize: 12pt
+geometry: "inner=25mm, outer=25mm, top=30mm, bottom=25mm"
+indent: true
+header-includes:
+  - \usepackage{placeins}
+  - \usepackage{setspace}
+  - \onehalfspacing
+  - \usepackage{chngcntr}
+  - \counterwithin{figure}{section}
+  - \counterwithin{table}{section}
+  - \usepackage{subfig}
+  - \usepackage{float}
+---
+
+```{r setup, include=FALSE}
+
+rm(list = ls())
+
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = "center",
+                      fig.width = 5,
+                      fig.pos = "H",
+                      fig.path = "figures/",
+                      comment = NA,
+                      cache = TRUE)
+
+options(digits = 5)
+
+```
+
+```{r packages, include=FALSE}
+
+sapply(c("kableExtra", "knitr", "readxl", "tidyverse"), 
+       require, character.only = TRUE)
+
+```
+
+```{r fig-appearance}
+legend_bottom_right_inside <- theme(legend.spacing = unit(0.02, "cm"),
+                                  legend.background = element_rect(colour = "white", size = 0.1),
+                                  legend.key.size = unit(0.5, 'lines'),
+                                  legend.justification = c(1, 0), 
+                                  legend.position = c(1, 0))
+
+legend_top_right_inside <- theme(legend.spacing = unit(0.02, "cm"),
+                                  legend.background = element_rect(colour = "white", size = 0.1),
+                                  legend.key.size = unit(0.5, 'lines'),
+                                  legend.justification = c(1, 1), 
+                                  legend.position = c(1, 1))
+
+legend_top_left_inside <- theme(legend.spacing = unit(0.02, "cm"),
+                                  legend.background = element_rect(colour = "white", size = 0.1),
+                                  legend.key.size = unit(0.5, 'lines'),
+                                  legend.justification = c(0, 1), 
+                                  legend.position = c(0, 1))
+
+legend_bottom_left_inside <- theme(legend.spacing = unit(0.02, "cm"),
+                                  legend.background = element_rect(colour = "white", size = 0.1),
+                                  legend.key.size = unit(0.5, 'lines'),
+                                  legend.justification = c(0, 0), 
+                                  legend.position = c(0, 0))
+
+theme_default <- theme_minimal() +
+  theme(text = element_text(size=8))+
+  theme(axis.text.x = element_text(angle=90, vjust=0.5))
+```
+
