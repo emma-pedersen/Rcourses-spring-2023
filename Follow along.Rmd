@@ -7,6 +7,7 @@ Jeg har hentet data på arbejdsløshedsraten direkte inde fra OECD. Her kræves 
 
 ```{r}
 library(readxl)
+library(tidyverse)
 OECD_data <- read_excel("OECD data.xlsx")
 glimpse(OECD_data)
 
@@ -44,22 +45,22 @@ Dette kan gøres på flere måder:
 1. Brug filter() funktionen til at vælge observationer kun for Danmark, gem dette i et dataset $\rightarrow$ Gør nu det samme for de andre lande $\rightarrow$ brug left_join() funktionen til at sammensætte de 5 individuelle dataset. 
 
 ```{r}
-DK_dat=OECD_data %>% 
+DK_dat = OECD_data %>% 
   select(location, value, time) %>%
   filter(location == "DNK") %>%
   rename(dk_value = value)
 
-DEU_dat=OECD_data %>% 
+DEU_dat = OECD_data %>% 
   select(location, value, time) %>%
   filter(location == "DEU") %>%
   rename(deu_value = value)
 
-USA_dat=OECD_data %>% 
+USA_dat = OECD_data %>% 
   select(location, value, time) %>%
-  filter(location == "USA")%>%
+  filter(location == "USA") %>%
   rename(usa_value = value)
 
-option_a_data= DK_dat %>%
+option_a_data = DK_dat %>%
   left_join(DEU_dat, by = c("time")) %>%
   left_join(USA_dat, by = c("time")) %>%
   select(time,dk_value, deu_value, usa_value)
@@ -72,9 +73,9 @@ Denne metode tager en del tid og kode, nogle gange er det nødvendigt, men til l
 
 
 ```{r}
-option_b_data=OECD_data %>% 
+option_b_data = OECD_data %>% 
   select(location, value, time) %>%
-  pivot_wider( names_from = location, values_from= value)
+  pivot_wider(names_from = location, values_from = value)
 ```
 
 ```{r}
@@ -88,7 +89,7 @@ Jeg kunne nu lave hver kolonne til en tidsserie og derved droppe time variablen 
 
 
 ```{r}
-data_ts= option_2_data %>% 
+data_ts = option_b_data %>% 
   select(-time) %>%
   ts(start = c(2005), frequency = 1) 
 ```
@@ -97,7 +98,7 @@ data_ts= option_2_data %>%
 **MEN** så vil jeg ikke kunne bruge ggplot2, da dette ikke er lavet for tidsserier. Derfor beholder vi formatet "option_2_data" hvor jeg har en "time" variabel med. Vi kan nu lave forskellige plots:
 
 ```{r}
-ggplot(option_2_data, aes(x= time ,y = DNK)) + # angiver det datasæt, vi ønsker at plotte fra
+ggplot(option_b_data, aes(x = time ,y = DNK)) + # angiver det datasæt, vi ønsker at plotte fra
 # samt hvad der skal være på x og y akserne
 geom_line() + # vi ønsker at lave et linjeplot
 labs(title = "Arbejdsløshedsraten i Danmark fra 2005 til 2020",
