@@ -94,8 +94,8 @@ Resten tager vi i R.
 
 ## Brug af R-markdown 
 
-- Hvis du har windows er der en genvej til at lave code-chunks: **Tryk ctrl+alt+i**
-- Hvis du har Mac (gud forbyde det) er genvejen **Spørg Emma**
+- Hvis du har windows (gud forbyde det) er der en genvej til at lave code-chunks: **Tryk ctrl+alt+i**
+- Hvis du har Mac (det eneste rigtige) er genvejen **cmd+option+i**
 
 - Kopir følgene kode ind i din code chunk: 
 
