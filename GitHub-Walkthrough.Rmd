@@ -1,0 +1,113 @@
+---
+title: "GitHub Walkthrough"
+author: "Emma Pedersen"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+---
+
+\newpage
+
+# Installer Git på Mac
+
+På de fleste Mac computere er Git allerede installeret, så derfor er det ikke sikkert, du behøver gøre det selv. Start derfor med at se, om Git er installeret.
+
+1.  Åbn Terminal på computeren (genvej: tryk **cmd+space** og søg på Terminal)
+2.  Skriv i terminalen: `git version`
+3.  Tryk Enter
+4.  Hvis Git er installeret, vil der stå noget i stil med `git version 2.37.1 (Apple Git-137.1)`
+
+Hvis Git ikke er installeret det, kan du gøre det på en af to måder:
+
+## Installer Git med Homebrew
+
+For denne metode skal du først have Homebrew (OBS! Kan kræve, at du har Xcode installeret) installeret.
+
+1.  Åbn Terminal på computeren (genvej: tryk **cmd+space** og søg på Terminal)
+2.  Indsæt: \
+    `/bin/bash -c "\$(curl -fsSL <https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh>)"`
+3.  Følg vejledningen, indtil det er installeret
+
+Når Homebrew er installeret, kan du installere Git.
+
+1.  Åbn Terminal på computeren (genvej: tryk **cmd+space** og søg på Terminal)
+2.  Indsæt: `brew install git`
+3.  Tjek at Git er installeret ved at indtaste `git version` i terminalen
+
+## Installer Git med en macOS Installer
+
+Hvis du ikke kan installere gennem Homebrew, fordi du ikke har eller vil have Xcode installeret, kan Git også installeres med en macOS Installer.
+
+1.  Gå ind på linket: <https://sourceforge.net/projects/git-osx-installer/>
+2.  Tryk på **Download**
+3.  Følg instruktionerne
+4.  Åbn Terminal på computeren (genvej: tryk **cmd+space** og søg på Terminal) og skriv heri: `git version`
+
+\newpage
+
+# Installer Git på Windows
+
+**Det ved Simon forhåbentlig**
+
+\newpage
+
+# Kobl GitHub sammen med dit R projekt
+
+## Inden du går i gang
+
+For at du kan bruge GitHub sammen med R skal du først oprette en bruger. Dette gøres på [github.com](github.com).
+
+Derefter skal du på GitHub lave en Personal Access Token, som fungerer som det kodeord, du skal bruge i R Studio når du vil koble dit projekt mellem de to platforme.
+
+1.  Log ind på din bruger på [github.com](github.com)
+2.  Tryk på dit ikon i øverste højre hjørne og vælg **Settings**
+3.  Vælg **Developer settings** i venstre side (scroll ned i bunden for at finde den)
+4.  Vælg **Personal Access Token**
+5.  Vælg **Tokens (classic)**
+6.  Vælg **Generate new token**
+7.  Vælg **Generate new token (classic)**
+9.  Vælg (kryds af i) alle *scopes*
+8.  Sæt **Expiration** til **No expiration**
+10. Kopier din token og gem den i en note på computeren, hvor du kan finde den igen
+
+OBS! Når du går væk fra siden med din Personal Access Token kan du ikke længere få adgang til at se den. Derfor er det vigtigt, at du gemmer den et sted på din computer, hvor du kan finde den igen, når du skal bruge den.
+
+## Lav en Repository i GitHub
+
+1.  Log ind på din bruger på [github.com](github.com)
+2.  Tryk på **New Repository**
+3.  Giv din repository et navn, som passer til projektet
+4.  Tryk på **Create Repository**
+5.  Kopier HTTPS URL
+
+## Opret projekt i RStudio
+
+1.  Tryk på **New Project**
+2.  Vælg **Version Control**
+3.  Vælg **Git**
+4.  Indsæt den kopierede URL - der tildeles automatisk et navn
+5.  Vælg, hvor på computeren, projektet skal ligge
+6.  Tryk på **Create Project**
+
+Herefter popper en dialogboks op
+
+7.  Indtast dit GitHub brugernavn og tast Enter
+8.  Indtast din Personal Access Token og tast Enter
+
+Dit projekt åbnes nu i R Studio, og du er klar til at arbejde.
+
+## Hvis I er en gruppe, der skal have adgang til samme GitHub repository
+
+1.  Én person opretter et projekt i R Studio som beskrevet ovenfor
+2.  Denne går herefter ind i sin repository på Github og vælger **Settings**
+3.  Under **Access** vælges **Collaborators**
+4.  Tryk på **Add people** og søg efter dine gruppemedlemmer
+5.  Vælg dem og vælg derefter **Add [navn]** efterfulgt af **To this repository**
+6.  De andre gruppemedlemmer får en mail med et invitationslink
+    1.  Accepter invitation
+    2.  Gå ind i repository og tryk på den grønne **Code**
+    3.  Kopiér HTTPS URL og opret et projekt i R Studio som beskrevet ovenfor
+    
+    
+<!--- Evt. hvordan man opretter branches, så hver person i gruppen har sin egen branch for ikke at fucke alt op? --->
