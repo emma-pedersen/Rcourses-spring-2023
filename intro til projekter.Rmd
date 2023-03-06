@@ -1,0 +1,242 @@
+---
+title: "lecture 1 presentation"
+author: "Simon"
+date: "29/7/2022"
+output:
+  beamer_presentation:
+    toc: yes
+    slide_level: 2
+    theme: AnnArbor
+    colortheme: dolphin
+    fonttheme: structurebold
+  pdf_document:
+    toc: yes
+---
+
+
+# Projekter
+
+## Hvordan laves et nyt projekt
+
+- Projekter gør dit liv meget nemmere! 
+
+
+- Klik 'File' $\rightarrow$ 'New projekt' $\rightarrow$ 'New directory' $\rightarrow$ 'New projekt' $\rightarrow$ Giv dit projekt et navn (Måske RKursus) $\rightarrow$ Vælg hvor projekt mappen skal ligge på din computer (Kunne være Skrivebordet)
+
+
+- Se nu øverst i Højere hjørne om dit projekt fremgår. 
+
+
+- Alt du gemmer i denne mappe vil nu blive vist under fanen 'files' og gør det nemmere blandt andet at importere data i R.
+
+
+- Lad os lave et nyt projekt!
+
+
+
+
+## Load data i projekter
+
+- **Step 1** Find et hvilket som helst dataset, og gem det i din projekt mappe!
+
+- **Step 2** Find datasettet under "Files" i R-Stuido
+
+- **Step 3** Højreklik og tryk importer 
+
+- **Step 4** Kopir koden så du ik behøves at gøre det næste gang!
+
+
+
+## Vælg mellem flere projekter
+
+- Se i øverste højre hjørne hvilket projekt du på nuværrende tidspunkt er i!
+
+- Ønsker du at skifte, vælg pilen tryk derefter på det projekt du ønsker at åbne
+
+- Fremgår rojektet ikke, vælg "open projekt" og find projektet hvor du har gemt det!
+
+
+
+# Basics i R-markdown:
+
+
+## Åben et R-markdown dokument 
+
+1. Klik på file
+2. Vælg new file
+3. Vælg R-markdown 
+4. Til venstre skulle felted "document" allerede være valgt. 
+5. Giv dit dokument en titel samt skriv dit navn under Author
+6. Defualt output format kommer vi til så bare tryk "ok"
+
+Resten tager vi i R. 
+
+
+## Brug af R-markdown
+
+- Øverst finder i Yammel koden, her kan i sætte generelle ting for hele dokumentet. 
+
+
+- Neden under er et markdown dokument: Her kan du blandt andet skrive text, lave overskrifter, sætte figure ind. 
+**MEN** Du kan **ikke** skrive r-kode i dette!
+
+- For at skrive r-kode skal vi lave en code-chunk:
+
+1. Klik der hvor du ønsker en code chunk
+2. tryk på +c knappen i øverste højre hjørne 
+3. vælg R
+
+```{r}
+## Du kan nu skrive r kode 
+
+1+1
+```
+
+## Brug af R-markdown 
+
+- Hvis du har windows er der en genvej til at lave code-chunks: **Tryk ctrl+alt+i**
+- Hvis du har Mac (gud forbyde det) er genvejen **Spørg Emma**
+
+- Kopir følgene kode ind i din code chunk: 
+
+```{r, message=FALSE, fig.height=3}
+library(car)
+# Car pakken har et dataset der hedder "cars"
+speed=cars$speed
+dist=cars$dist
+plot(speed, dist); lines(speed, dist); grid()
+```
+
+
+- Hvis du tilføjer noget til et plot skal det være i samme linje (modsat i R-script)
+
+
+## Brug af R-markdown 
+
+- *Kursiv* "*"
+- **Fed** "**"
+- 1. Overskrift: "#"
+- 2. Underoverskrift: "##" op til "####"
+
+Hvis du har lavet overskrifter brug "outline" øverst i højre hjørne til at se dine sektioner
+
+
+## Fra R-markdown til Word, html og pdf
+
+### Word og html
+1. Tryk nu på pilen ud fra "knit" øverst i vesntre side
+2. vælg "html"
+3. Pøv nu "word"
+
+
+
+### PDF
+
+```{r}
+#install.packages('tinytex')
+#tinytex::install_tinytex()
+```
+
+- Hvis det ik virker, hjælper vi i de to timer efter pausen!!
+
+
+## Opsæt din R-chunk
+
+Her er nogle af de vitigste: 
+
+- echo=FALSE:
+- message=FALSE:
+- result="FALSE"hide": 
+- fig.width= ?
+- fig.height= ?
+- /tiny og /normalsize
+
+Lad os se på nogle eksempler: 
+
+## Opsæt din R-chunk (Eksempel 1)
+
+Uden jeg gør noget:
+
+```{r}
+par(mfrow=c(1,2))
+plot(cars$speed)
+plot(cars$dist)
+```
+
+## Opsæt din R-chunk (Eksempel 1)
+
+Jeg bruger echo= FALSE til at fjerne kode chunken
+
+```{r, echo=FALSE}
+par(mfrow=c(1,2))
+plot(cars$speed)
+plot(cars$dist)
+```
+
+## Opsæt din R-chunk (Eksempel 1)
+
+Jeg bruger nu også fig.width of fig.height til at ændre størrelsen på figuren
+
+```{r, echo=FALSE, fig.width=7, fig.height=4}
+par(mfrow=c(1,2))
+plot(cars$speed)
+plot(cars$dist)
+```
+
+## Opsæt din R-chunk (Eksempel 2)
+
+Jeg kan have noget kode der ser helt håbløst ud når det knittes:
+
+```{r}
+library(tidyverse)
+
+mutate(filter(select(cars,dist),dist > 4 & dist< 20) ,sum_dist= cumsum(dist))
+```
+
+
+## Opsæt din R-chunk (Eksempel 2)
+
+Jeg kan bruge message=FALSE for at fjerne besekd når jeg bruger library: 
+
+```{r, message=FALSE}
+library(tidyverse)
+
+mutate(filter(select(cars,dist),dist > 4 & dist< 20) ,sum_dist= cumsum(dist))
+```
+
+
+
+## Opsæt din R-chunk (Eksempel 2)
+
+Jeg kan bruge tiny og normalize til at gøre koden mindre: 
+
+\tiny
+
+```{r, message=FALSE}
+library(tidyverse)
+
+mutate(filter(select(cars,dist),dist > 4 & dist< 20) ,sum_dist= cumsum(dist))
+```
+
+\normalsize
+
+
+
+## Opsæt din R-chunk (Eksempel 2)
+
+Vi kan også fjerne output hvis vi ønsker med result='hide' 
+
+\tiny
+
+```{r, results='hide'}
+library(tidyverse)
+
+mutate(filter(select(cars,dist),dist > 4 & dist< 20) ,sum_dist= cumsum(dist))
+```
+
+\normalsize
+
+
+
+
+
