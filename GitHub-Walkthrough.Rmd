@@ -48,7 +48,12 @@ Hvis du ikke kan installere gennem Homebrew, fordi du ikke har eller vil have Xc
 
 # Installer Git på Windows
 
-**Det ved Simon forhåbentlig**
+
+1. Gå ind på linket <https://gitforwindows.org/> 
+2. Installer, **Vigtigt** under instalationen når du bliver spurgt "How would you like to use git from teh command line?" Skal du vælge Git from the command line and also from 3rd-party software. Denne burde også være recommended
+3. Hvis dit R er åbent genstart. Ellers se om Git er en mulighed når du forsøger at lave et nyt projekt med Version control.
+
+
 
 \newpage
 
