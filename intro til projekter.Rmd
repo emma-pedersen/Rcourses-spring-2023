@@ -1,90 +1,74 @@
 ---
-title: "lecture 1 presentation"
-author: "Simon"
-date: "29/7/2022"
+title: "R Markdown"
+date: "`r Sys.Date()`"
 output:
-  beamer_presentation:
+  beamer_presentation: 
     toc: yes
     slide_level: 2
     theme: AnnArbor
     colortheme: dolphin
     fonttheme: structurebold
+    fig_caption: yes
   pdf_document:
     toc: yes
 ---
-
 
 # Projekter
 
 ## Hvordan laves et nyt projekt
 
-- Projekter gør dit liv meget nemmere! 
+-   Projekter gør dit liv meget nemmere!
 
+-   Klik 'File' $\rightarrow$ 'New project' $\rightarrow$ 'New directory' $\rightarrow$ 'New project' $\rightarrow$ Giv dit projekt et navn (Måske RKursus) $\rightarrow$ Vælg hvor projektmappen skal ligge på din computer (Kunne være Skrivebordet)
 
-- Klik 'File' $\rightarrow$ 'New projekt' $\rightarrow$ 'New directory' $\rightarrow$ 'New projekt' $\rightarrow$ Giv dit projekt et navn (Måske RKursus) $\rightarrow$ Vælg hvor projekt mappen skal ligge på din computer (Kunne være Skrivebordet)
+-   Se nu øverst i højre hjørne om dit projekt fremgår.
 
+-   Alt du gemmer i denne mappe vil nu blive vist under fanen 'files' og gør det nemmere blandt andet at importere data i R.
 
-- Se nu øverst i Højere hjørne om dit projekt fremgår. 
-
-
-- Alt du gemmer i denne mappe vil nu blive vist under fanen 'files' og gør det nemmere blandt andet at importere data i R.
-
-
-- Lad os lave et nyt projekt!
-
-
-
+-   Lad os lave et nyt projekt!
 
 ## Load data i projekter
 
-- **Step 1** Find et hvilket som helst dataset, og gem det i din projekt mappe!
+-   **Step 1** Find et hvilket som helst dataset, og gem det i din projektmappe!
 
-- **Step 2** Find datasettet under "Files" i R-Stuido
+-   **Step 2** Find datasettet under "Files" i R-Studio
 
-- **Step 3** Højreklik og tryk importer 
+-   **Step 3** Højreklik og tryk importer
 
-- **Step 4** Kopir koden så du ik behøves at gøre det næste gang!
-
-
+-   **Step 4** Kopier koden så du ikke behøver gøre det næste gang!
 
 ## Vælg mellem flere projekter
 
-- Se i øverste højre hjørne hvilket projekt du på nuværrende tidspunkt er i!
+-   Se i øverste højre hjørne hvilket projekt du på nuværende tidspunkt er i!
 
-- Ønsker du at skifte, vælg pilen tryk derefter på det projekt du ønsker at åbne
+-   Ønsker du at skifte, vælg pilen og tryk derefter på det projekt du ønsker at åbne
 
-- Fremgår rojektet ikke, vælg "open projekt" og find projektet hvor du har gemt det!
-
-
+-   Fremgår projektet ikke, vælg "open project" og find projektet hvor du har gemt det!
 
 # Basics i R-markdown:
 
+## Åben et R-markdown dokument
 
-## Åben et R-markdown dokument 
+1.  Klik på file
+2.  Vælg new file
+3.  Vælg R-markdown
+4.  Til venstre skulle feltet "document" allerede være valgt.
+5.  Giv dit dokument en titel samt skriv dit navn under Author
+6.  Default output format kommer vi til så bare tryk "ok"
 
-1. Klik på file
-2. Vælg new file
-3. Vælg R-markdown 
-4. Til venstre skulle felted "document" allerede være valgt. 
-5. Giv dit dokument en titel samt skriv dit navn under Author
-6. Defualt output format kommer vi til så bare tryk "ok"
-
-Resten tager vi i R. 
-
+Resten tager vi i R.
 
 ## Brug af R-markdown
 
-- Øverst finder i Yammel koden, her kan i sætte generelle ting for hele dokumentet. 
+-   Øverst finder i YAML koden, her kan i sætte generelle ting for hele dokumentet.
 
+-   Neden under er et markdown dokument: Her kan du blandt andet skrive text, lave overskrifter, sætte figure ind. **MEN** Du kan **ikke** skrive r-kode i dette!
 
-- Neden under er et markdown dokument: Her kan du blandt andet skrive text, lave overskrifter, sætte figure ind. 
-**MEN** Du kan **ikke** skrive r-kode i dette!
+-   For at skrive r-kode skal vi lave en code-chunk:
 
-- For at skrive r-kode skal vi lave en code-chunk:
-
-1. Klik der hvor du ønsker en code chunk
-2. tryk på +c knappen i øverste højre hjørne 
-3. vælg R
+1.  Klik der hvor du ønsker en code chunk
+2.  tryk på +c knappen i øverste højre hjørne
+3.  vælg R
 
 ```{r}
 ## Du kan nu skrive r kode 
@@ -92,12 +76,13 @@ Resten tager vi i R.
 1+1
 ```
 
-## Brug af R-markdown 
+## Brug af R-markdown
 
-- Hvis du har windows (gud forbyde det) er der en genvej til at lave code-chunks: **Tryk ctrl+alt+i**
-- Hvis du har Mac (det eneste rigtige) er genvejen **cmd+option+i**
+-   Hvis du har Windows (gud forbyde det) er der en genvej til at lave code-chunks: **Tryk ctrl+alt+i**
 
-- Kopir følgene kode ind i din code chunk: 
+-   Hvis du har Mac (det eneste rigtige) er genvejen **cmd+option+i**
+
+-   Kopier følgende kode ind i din code chunk:
 
 ```{r, message=FALSE, fig.height=3}
 library(car)
@@ -107,28 +92,26 @@ dist=cars$dist
 plot(speed, dist); lines(speed, dist); grid()
 ```
 
+-   Hvis du tilføjer noget til et plot skal det være i samme linje (modsat i R-script)
 
-- Hvis du tilføjer noget til et plot skal det være i samme linje (modsat i R-script)
+## Brug af R-markdown
 
-
-## Brug af R-markdown 
-
-- *Kursiv* "*"
-- **Fed** "**"
-- 1. Overskrift: "#"
-- 2. Underoverskrift: "##" op til "####"
+-   *Kursiv* "\*"
+-   **Fed** "\*\*"
+-   
+    1.  Overskrift: "\#"
+-   
+    2.  Underoverskrift: "\##" op til "\####"
 
 Hvis du har lavet overskrifter brug "outline" øverst i højre hjørne til at se dine sektioner
-
 
 ## Fra R-markdown til Word, html og pdf
 
 ### Word og html
-1. Tryk nu på pilen ud fra "knit" øverst i vesntre side
-2. vælg "html"
-3. Pøv nu "word"
 
-
+1.  Tryk nu på pilen ud fra "knit" øverst i vesntre side
+2.  vælg "html"
+3.  Pøv nu "word"
 
 ### PDF
 
@@ -137,21 +120,20 @@ Hvis du har lavet overskrifter brug "outline" øverst i højre hjørne til at se
 #tinytex::install_tinytex()
 ```
 
-- Hvis det ik virker, hjælper vi i de to timer efter pausen!!
-
+-   Hvis det ikke virker, hjælper vi i de to timer efter pausen!!
 
 ## Opsæt din R-chunk
 
-Her er nogle af de vitigste: 
+Her er nogle af de vigtigste:
 
-- echo=FALSE:
-- message=FALSE:
-- result="FALSE"hide": 
-- fig.width= ?
-- fig.height= ?
-- /tiny og /normalsize
+-   echo=FALSE:
+-   message=FALSE:
+-   result="FALSE"hide":
+-   fig.width= ?
+-   fig.height= ?
+-   /tiny og /normalsize
 
-Lad os se på nogle eksempler: 
+Lad os se på nogle eksempler:
 
 ## Opsæt din R-chunk (Eksempel 1)
 
@@ -193,10 +175,9 @@ library(tidyverse)
 mutate(filter(select(cars,dist),dist > 4 & dist< 20) ,sum_dist= cumsum(dist))
 ```
 
-
 ## Opsæt din R-chunk (Eksempel 2)
 
-Jeg kan bruge message=FALSE for at fjerne besekd når jeg bruger library: 
+Jeg kan bruge message=FALSE for at fjerne beskeder når jeg bruger library:
 
 ```{r, message=FALSE}
 library(tidyverse)
@@ -204,11 +185,9 @@ library(tidyverse)
 mutate(filter(select(cars,dist),dist > 4 & dist< 20) ,sum_dist= cumsum(dist))
 ```
 
-
-
 ## Opsæt din R-chunk (Eksempel 2)
 
-Jeg kan bruge tiny og normalize til at gøre koden mindre: 
+Jeg kan bruge tiny og normalize til at gøre koden mindre:
 
 \tiny
 
@@ -220,11 +199,9 @@ mutate(filter(select(cars,dist),dist > 4 & dist< 20) ,sum_dist= cumsum(dist))
 
 \normalsize
 
-
-
 ## Opsæt din R-chunk (Eksempel 2)
 
-Vi kan også fjerne output hvis vi ønsker med result='hide' 
+Vi kan også fjerne output hvis vi ønsker med result='hide'
 
 \tiny
 
@@ -236,7 +213,155 @@ mutate(filter(select(cars,dist),dist > 4 & dist< 20) ,sum_dist= cumsum(dist))
 
 \normalsize
 
+# Lav R Markdown som en boss ... ish
+
+## YAML
+
+Indeholder metadata for dokumentet $\rightarrow$ bestemmer hvilken type dokument, du laver R Markdown filen til og hvordan layout bliver, m.v.
+
+### Default YAML
+
+```{r, eval=FALSE}
+---
+title: "Title"
+author: "Author"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+```
+
+## YAML
+### Output
+
+```{r, eval=FALSE}
+output: 
+  pdf_document:
+    number_sections: true
+    toc: true
+    toc_depth: 3
+```
+
+## YAML
+### Output
+
+```{r, eval=FALSE}
+output: 
+  pdf_document:
+  
+    # Nummerér automatisk afsnitsoverskrifter:
+    number_sections: true
+
+    # Dan automatisk indholdsfortegnelse
+    # ud fra afsnitsoverskrifter:
+    toc: true
+    
+    # Bestem hvor mange "lag" af overskrifter, 
+    # der skal med i toc:
+    toc_depth: 3
+```
+
+## YAML
+### header-includes
+header-includes fungerer ligesom LaTeX' preamble - bare at vi har det hele i den samme markdownfil.
+
+Eksempel på brugbare pakker:
+```{r eval=FALSE}
+header-includes:
+  - \usepackage{setspace}
+  - \onehalfspacing
+  - \usepackage{chngcntr}
+  - \counterwithin{figure}{section}
+  - \counterwithin{table}{section}
+  - \usepackage{subfig}
+  - \usepackage{float}
+```
+
+## YAML
+### header-includes
+\tiny
+
+```{r eval=FALSE}
+header-includes:
+  
+  # Pakke til at definere linjeafstand
+  - \usepackage{setspace}
+  # Vi kan bruge pakken til her at sætte til halvanden linjeafstand
+  - \onehalfspacing
+
+  # Pakke der definerer kommandoerne \counterwithin og \counterwithout
+  - \usepackage{chngcntr}
+  # Sætter en counter, som nulstilles ved hver ny section*:
+  - \counterwithin{figure}{section}
+  - \counterwithin{table}{section}
+
+  # Pakke der gør, at vi kan lave referencer til subfigurer indenfor et enkelt floating environment
+  # Bruges for at give separate titler eller referencer til subfigurer (e.g. fig 1a og fig 1b):
+  - \usepackage{subfig}
+
+  # Pakke der fikser floating environments' shortcomings, fx placering af figurer:
+  - \usepackage{float}
+```
+\* \\counterwithout fjerner relationen fra counterwithin
+
+## Ligninger
+Vi kan næsten ikke undgå at bruge ligninger, når vi skriver projekter. Det gøres nemt:
+
+### Inline ligning^[OBS! Hvis \$ skal bruges i teksten skrives det efter en backslash for at omgå Markdowns default brug heraf.]
+```{r eval=FALSE}
+$Y=AL^\beta K^\alpha$
+```
+
+### Ligning på selvstændig linje
+```{r eval=FALSE}
+$$Y=AL^\beta K^\alpha$$
+```
+
+## Nummereret ligning
+Hvis vi vil have nummererede ligninger må vi bruge LaTeX format og give vores ligninger et *label*.^[OBS! Hvis labels er ens kan der ske fejl med at knitte dokumentet] Tilgengæld kan vi så også referere til dem.
+
+```{r eval=FALSE}
+\begin{equation}\label{y}
+Y=AL^\beta K^\alpha
+\end{equation}
+```
 
 
+# For nørderne
 
+## Parametre
+Parametre er nyttige, hvis vi vil lave den samme undersøgelse/rapport for fx to forskellige perioder. Med parametre kan vi nemlig let ændre på hele dokumentet uden at bruge tid på at gå hele dokumentet slavisk igennem
+
+I YAML indsættes:
+```{r eval=FALSE}
+params:
+  parameter: værdi
+```
+
+Eksempel:
+```{r eval=FALSE}
+params:
+  year: 1970
+  country: "Denmark"
+```
+
+## Parametre
+### Parametre i teksten, eksempel
+
+```{r eval=FALSE}
+Det var i året `r params$year` at Simon overgav sig til Mac
+```
+
+### Parametre i code chunks, eksempel
+
+\small
+```{r eval=FALSE}
+gapminder %>%
+    filter(year == params$year) %>%
+    ggplot(aes(x = gdpPercap, y = lifeExp, 
+               size = pop, color = continent)) +
+    geom_point() +
+    labs(title = paste("Life Expectancy and GDP for", 
+                      params$year), 
+         x = "GPD Per Capita", y = "Life Expectancy")
+```
 
