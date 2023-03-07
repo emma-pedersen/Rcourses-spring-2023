@@ -16,7 +16,6 @@ fontsize: 12pt
 geometry: "inner=25mm, outer=25mm, top=30mm, bottom=25mm"
 indent: true
 header-includes:
-  - \usepackage{placeins}
   - \usepackage{setspace}
   - \onehalfspacing
   - \usepackage{chngcntr}
@@ -24,6 +23,10 @@ header-includes:
   - \counterwithin{table}{section}
   - \usepackage{subfig}
   - \usepackage{float}
+params:
+  country: "Denmark"
+  startdate: 1970
+  enddate: 2010
 ---
 
 ```{r setup, include=FALSE}
@@ -37,8 +40,8 @@ knitr::opts_chunk$set(echo = FALSE,
                       fig.width = 5,
                       fig.pos = "H",
                       fig.path = "figures/",
-                      comment = NA,
-                      cache = TRUE)
+                      comment = NA
+                      )
 
 options(digits = 5)
 
@@ -50,6 +53,80 @@ sapply(c("kableExtra", "knitr", "readxl", "tidyverse"),
        require, character.only = TRUE)
 
 ```
+
+\newpage
+
+# YAML
+
+## Output
+
+### PDF
+
+|                       |                                                            |
+|:------------------------|:-----------------------------------------------|
+| fig_caption: true     | Overskrifter på alle figurer, e.g. **Fig. 1**              |
+| number_sections: true | Nummererede overskrifter på kapitler og sektioner          |
+| toc: true             | Danner indholdsfortegnelse ud fra dokumentets overskrifter |
+| toc_depth: 3          | Bestem hvor mange underoverskrifter, der skal med i toc    |
+
+## Litteraturliste og referencer
+
+|                        |                                                                        |
+|:------------------------|:----------------------------------------------|
+| bibliography: refs.bib | Dokument i bibtex format, hvor alle litteraturhenvisninger ligger      |
+| csl: apa.csl           | Fil, der definerer referencestilen; hav filen liggende i projektmappen |
+
+## Formatering
+
+|                                                           |                            |
+|:-------------------------------------------------|:---------------------|
+| urlcolor: black                                           |                            |
+| linkcolor: black                                          |                            |
+| fontsize: 12pt                                            |                            |
+| geometry: "inner=25mm, outer=25mm, top=30mm, bottom=25mm" | Marginer                   |
+| indent: true                                              | Indrykning af første linje |
+
+## Packages
+
+### header-includes
+
+-   setspace: set spacing between lines in document
+-   chngcntr: defines commands \\counterwithin (sets up a counter to be reset when another is incremented) and \\counterwithout (which unsets that relationship)
+-   subfig: manipulation an reference of sub floats within a single floating environment $\rightarrow$ use when subfloats are to be separately captioned or referenced.
+-   float: fix floating evironments' shortcomings, e.g. figure placement
+
+## Parametre
+
+### params
+
+# LaTeX
+
+Formateringsmiljø, vi kan skrive i; gør at vi ikke skal tænke på layout og formatering, da den laver det for os. Det kræver dog, at vi skriver i LaTeX-"sproget"
+
+## Ligninger
+
+Med basal markdown skrives ligninger i teksten omkranset af et \$ på hver side. Ligninger på en selvstændig linje omkranses af to \$\$ på hver side.^[OBS! Hvis \$ skal bruges i teksten skrives det efter en backslash for at omgå Markdowns default brug heraf. Ergo skriver du \\\$]
+
+Her har vi et eksempel på en inline ligning: $Y=AL^\beta K^\alpha$ (\$$Y=AL^\beta K^\alpha$\$). Eller selvstændigt:
+$$Y=AL^\beta K^\alpha$$
+(\$\$$Y=AL^\beta K^\alpha$\$\$)
+\newline
+
+Hvis du vil have nummererede ligninger, skal du skrive ligningen i LaTeX format og give den en 
+*label*.
+
+\begin{equation}\label{y}
+Y=AL^\beta K^\alpha
+\end{equation}
+
+
+```{r eq, echo=TRUE, eval=FALSE, background="blue"}
+\begin{equation}\label{y}
+Y=AL^\beta K^\alpha
+\end{equation}
+```
+
+-   \\ starter en kommando
 
 ```{r fig-appearance}
 legend_bottom_right_inside <- theme(legend.spacing = unit(0.02, "cm"),
@@ -77,7 +154,6 @@ legend_bottom_left_inside <- theme(legend.spacing = unit(0.02, "cm"),
                                   legend.position = c(0, 0))
 
 theme_default <- theme_minimal() +
-  theme(text = element_text(size=8))+
-  theme(axis.text.x = element_text(angle=90, vjust=0.5))
+  theme(text = element_text(size = 8)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 ```
-
