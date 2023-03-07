@@ -126,8 +126,13 @@ Y=AL^\beta K^\alpha
 \end{equation}
 ```
 
--   \\ starter en kommando
 
+# Markdown
+## Bestem indstillinger for chunks globalt
+## Inline code: referer til koderesultater
+
+## Tabeller
+## Figurer
 ```{r fig-appearance}
 legend_bottom_right_inside <- theme(legend.spacing = unit(0.02, "cm"),
                                   legend.background = element_rect(colour = "white", size = 0.1),
