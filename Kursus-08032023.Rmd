@@ -67,9 +67,9 @@ knitr::opts_chunk$set(echo = FALSE,
 ```
 
 
-# Inline code: referer til koderesultater
 
 ## Figurer
+Lav et tema, som du kan bruge på alle figurer i stedet for at skulle skrive det hver gang
 ```{r fig-appearance}
 legend_bottom_right_inside <- theme(legend.spacing = unit(0.02, "cm"),
                                   legend.background = element_rect(colour = "white", size = 0.1),
@@ -97,5 +97,26 @@ legend_bottom_left_inside <- theme(legend.spacing = unit(0.02, "cm"),
 
 theme_default <- theme_minimal() +
   theme(text = element_text(size = 8)) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  legend_top_right_inside
 ```
+
+```{r}
+library(readxl)
+data <- read_excel("bnp.xlsx")
+```
+```{r}
+data %>% head()
+data %>% tail()
+```
+
+```{r}
+library(gapminder)
+gapminder %>% 
+  filter(year >= 1970 & year <= 2010 & country=="Denmark") %>% 
+  ggplot(aes(year, lifeExp, color=pop)) +
+  geom_line() +
+  theme_default
+
+```
+

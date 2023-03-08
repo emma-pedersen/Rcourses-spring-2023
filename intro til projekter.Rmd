@@ -327,6 +327,9 @@ Y=AL^\beta K^\alpha
 \end{equation}
 ```
 
+## LaTeX math symbols
+![LaTeX math symbols]("LATEX symboler")
+
 ## Global options
 Global options i starten af dokumentet gør, at du ikke skal skrive det i starten af hver code chunk og øger projektets consistency.
 
