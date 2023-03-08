@@ -8,7 +8,6 @@ output:
     theme: AnnArbor
     colortheme: dolphin
     fonttheme: structurebold
-    fig_caption: yes
   pdf_document:
     toc: yes
 ---
@@ -306,10 +305,13 @@ header-includes:
 ## Ligninger
 Vi kan næsten ikke undgå at bruge ligninger, når vi skriver projekter. Det gøres nemt:
 
-### Inline ligning^[OBS! Hvis \$ skal bruges i teksten skrives det efter en backslash for at omgå Markdowns default brug heraf.]
+### Inline ligning
 ```{r eval=FALSE}
 $Y=AL^\beta K^\alpha$
 ```
+
+\tiny OBS! Hvis \$ skal bruges i teksten skrives det efter en backslash for at omgå Markdowns default brug heraf.
+
 
 ### Ligning på selvstændig linje
 ```{r eval=FALSE}
@@ -325,8 +327,57 @@ Y=AL^\beta K^\alpha
 \end{equation}
 ```
 
+## Global options
+Global options i starten af dokumentet gør, at du ikke skal skrive det i starten af hver code chunk og øger projektets consistency.
+
+```{r eval=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = "center",
+                      fig.width = 5,
+                      fig.pos = "H",
+                      fig.path = "figures/",
+                      comment = NA
+                      )
+```
+
+## Referencer
+### I YAML
+
+```{r eval=FALSE}
+# Indsæt bib fil, hvor alle referencer er
+bibliography: refs.bib
+
+# Bestem referencestil
+csl: apa.csl
+```
+
+### I projektet
+- Referer til kilde fra litteraturlisten:
+  - `@bibtag`: Keynes (1936)
+  - `[@bibtag]`: (Keynes, 1936)
+  - `[@bibtag, pp. 4]`: (Keynes, 1936, s. 4)
+- Referer til elementer i dit dokument:
+  - Giv elementet et label (e.g. # Introduktion {#sec-intro})
+  - `\ref{sec-intro}`: 1
 
 # For nørderne
+
+## Child dokumenter
+
+- Brugbart ved længere projekter, eller hvis forskellige personer skriver forskellige afsnit
+- Fx indledning i et dokument, analyse i et andet osv.
+
+```{r eval=FALSE}
+# Et child dokument:
+{r, child="child.Rmd"}
+
+# Flere child dokumenter:
+{r, child=c("firstchild.Rmd", "secondchild.Rmd")}
+
+```
+
 
 ## Parametre
 Parametre er nyttige, hvis vi vil lave den samme undersøgelse/rapport for fx to forskellige perioder. Med parametre kan vi nemlig let ændre på hele dokumentet uden at bruge tid på at gå hele dokumentet slavisk igennem
