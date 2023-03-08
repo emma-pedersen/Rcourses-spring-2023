@@ -11,6 +11,7 @@ Downloads:
 ## Course Mar 8, 2023: R Markdown and Github
 
 - [Slides](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/intro-til-projekter.pdf)
+- [GitHub Walkthrough](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/GitHub-Walkthrough.pdf)
 
 
 
