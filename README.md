@@ -12,6 +12,7 @@ Downloads:
 
 - [Slides](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/intro-til-projekter.pdf)
 - [GitHub Walkthrough](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/GitHub-Walkthrough.pdf)
+- [Data](https://github.com/emma-pedersen/Rcourses-spring-2023/raw/main/bnp.xlsx)
 
 
 
